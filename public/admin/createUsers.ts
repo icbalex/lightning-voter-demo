@@ -14,7 +14,7 @@ angular.module('app').component('createUsers', {
           firstName: person.firstName,
           lastName: person.lastName
         }).catch((error) => {
-          toastr.error("User already exists: " + person.email)
+          toastr.error(`User already exists: ${person.email}`)
         })
       }));
 

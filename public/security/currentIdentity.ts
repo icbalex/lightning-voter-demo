@@ -15,7 +15,7 @@ angular.module('app').factory('currentIdentity', ($http, $q) => {
       var dfd = $q.defer();
       
       
-      $http.put('/api/users/' + this.currentUser.id, newUserObj).then((response) => {
+      $http.put(`/api/users/${this.currentUser.id}, ${newUserObj}`).then((response) => {
         this.currentUser.firstName = newUserObj.firstName;
         this.currentUser.lastName = newUserObj.lastName;
         dfd.resolve();
