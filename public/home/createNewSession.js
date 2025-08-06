@@ -1,25 +1,24 @@
-angular.module('app').controller('createNewSession', {
-  templateUrl: '/home/createNewSession.html',  bindings: {
-    userSessions: '='
-  },
-  controller: function (toastr, userSessions, currentIdentity, sessions) {
-    this.userSessions = userSessions;
-
-    this.create = function () {
-      var newUserSession = {
-        title: this.title,
-        length: parseInt(this.length),
-        abstract: this.abstract,
-        userFirstName: currentIdentity.currentUser.firstName,
-        userLastName: currentIdentity.currentUser.lastName,
-        userId: currentIdentity.currentUser.id,
-      }
-
-      sessions.createNewSession(newUserSession).then(function (response) {
-        console.log(response);
-        this.userSessions.push(response.data);
-      }.bind(this))
-
+var _this = this;
+angular.module('app').component('createNewSession', {
+    templateUrl: '/home/createNewSession.html', bindings: {
+        userSessions: '='
+    },
+    controller: function (toastr, userSessions, currentIdentity, sessions) {
+        _this.userSessions = userSessions;
+        _this.create = function () {
+            var newUserSession = {
+                title: userSessions.title,
+                length: parseInt(userSessions.length),
+                abstract: userSessions.abstract,
+                userFirstName: currentIdentity.currentUser.firstName,
+                userLastName: currentIdentity.currentUser.lastName,
+                userId: currentIdentity.currentUser.id,
+            };
+            sessions.createNewSession(newUserSession).then(function (response) {
+                console.log(response);
+                _this.userSessions.push(response.data);
+            });
+        };
     }
-  }
-})
+});
+//# sourceMappingURL=createNewSession.js.map
